@@ -1,3 +1,9 @@
+# binaries
+src/lib/ffmpeg
+
+# working videos
+media
+
 # Logs
 logs
 *.log

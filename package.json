@@ -1,0 +1,26 @@
+{
+  "name": "hunter_video_ripper",
+  "version": "0.0.1",
+  "author": "some dipshit",
+  "devDependencies": {
+    "@types/tesseract.js": "2.0.0",
+    "@types/pngjs": "6.0.5",
+    "@types/node":"20",
+    "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "pixelmatch": "7.1.0",
+    "scribe.js-ocr": "0.8.0",
+    "tesseract.js": "6.0.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev:filter": "yarn build && node ./dist/lib/ripper/dedupe-sequence.js",
+    "dev:rip": "yarn build && node ./dist/lib/ripper/rip-to-screens.js",
+    "dev:read": "yarn build && node ./dist/lib/reader/parse-image.js",
+    "filter": "node ./dist/lib/ripper/dedupe-sequence.js",
+    "rip": "node ./dist/lib/ripper/rip-to-screens.js",
+    "read": "node ./dist/lib/reader/parse-image.js",
+    "run:all": "yarn rip && yarn filter && yarn read"
+  }
+}
