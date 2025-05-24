@@ -1,8 +1,10 @@
 # binaries
-src/lib/ffmpeg
-
-# working videos
+packages/ripper/lib
+# working files
 media
+packages/frontend/src/data
+packages/frontend/public/data
+yarn.lock
 
 # Logs
 logs

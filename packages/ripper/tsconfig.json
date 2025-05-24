@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "rootDirs": ["src"],
+    "jsx": "react-jsx",
+    "types": ["node"],
+    "outDir": "dist"
+  },
+  "include": ["src/**/*", "tests/**/*"]
+}

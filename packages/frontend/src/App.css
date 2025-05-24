@@ -1,0 +1,31 @@
+body{
+  background-color: #282c34;
+}
+.App {
+  max-width: 1200px;
+  margin:auto;
+}
+.App video{
+  width:100%;
+}
+
+.screen{
+  margin-top:20px;
+}
+.screen .screenHeader{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #fff;
+  font-weight:bold;
+}
+.screen .screenContents{
+  display:flex;
+  flex-direction: row;
+}
+.screenContents img{
+  width:50%;
+}
+.screenContents textarea{
+  width:50%;
+}

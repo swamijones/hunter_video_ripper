@@ -1,0 +1,35 @@
+{
+  "name": "@hunterlearning/video-ripper",
+  "version": "0.0.1",
+  "author": "some dipshit",
+  "devDependencies": {
+    "@types/tesseract.js": "2.0.0",
+    "@types/pngjs": "6.0.5",
+    "@types/node":"20",
+    "typescript": "5.8.3",
+    "npm-run-all": "4.1.5"
+  },
+  "dependencies": {
+    "@types/node": "^16.18.126",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "pixelmatch": "7.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-scripts": "5.0.1",
+    "scribe.js-ocr": "0.8.0",
+    "tesseract.js": "6.0.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev:filter": "yarn build && DEV_MODE=true yarn filter",
+    "dev:rip": "yarn build && yarn rip",
+    "dev:prep": "yarn build && yarn prep",
+    "dev:read": "yarn build && yarn read",
+    "filter": "node ./dist/dedupe-sequence.js",
+    "prep": "node ./dist/prep.js",
+    "rip": "node ./dist/rip-to-screens.js",
+    "read": "node ./dist/parse-image.js",
+    "rip:all": "npm-run-all -s rip filter read prep"
+  }
+}
