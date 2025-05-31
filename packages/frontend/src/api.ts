@@ -73,3 +73,7 @@ export const saveVideoData = async (hash:string, data?: RippedVideo) => {
     return await response.json()
   }
 }
+
+export const exportSlides = (hash:string = '', type: 'design' | 'problem' = 'design') => {
+  window.open(`${apiURL}export/${hash}/${type}`)
+}

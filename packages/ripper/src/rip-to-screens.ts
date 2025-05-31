@@ -47,7 +47,6 @@ export const ripToScreens = ({
 
     frameRip.stderr.on('data', (data) => {
         const output = data.toString()
-        //console.error('RIP ERROR:', data.toString())
         if(output.startsWith('Input')){
             const duration = output.split('Duration: ')[1].split(',')[0]
             videoDuration = timecodeToSeconds(duration)

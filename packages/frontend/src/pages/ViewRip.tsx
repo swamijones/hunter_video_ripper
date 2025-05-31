@@ -1,7 +1,7 @@
 import { FC, FormEventHandler, ReactEventHandler, useEffect, useMemo, useRef, useState } from "react"
 
 import { Link, useParams } from "react-router"
-import { getVideo, saveVideoData } from "../api"
+import { exportSlides, getVideo, saveVideoData } from "../api"
 import { timecode } from "../util"
 import { RippedVideo, VideoScreen } from "../types"
 
@@ -190,12 +190,21 @@ export const ViewRip:FC = () => {
         }
     }
 
+    const exportDesign = () => exportSlides(hash, 'design')
+    const exportProblem = () => exportSlides(hash, 'problem')
+
     if(!ripData) {
         return <></>
     }
     return (
     <div className="ripViewer mainColumn">
-        <Link to="/">&lt; Back to Projects</Link>
+        <div className="row between header">
+            <Link to="/">&lt; Back to Projects</Link>
+            <div className="row">
+                <button onClick={exportDesign}>Export Design Slides</button>
+                <button onClick={exportProblem}>Export Problem Slides</button>
+            </div>
+        </div>
         <h2>Rip of {ripData?.video}</h2>
         <div className="row">
             { ripData.screens && <ScreenBrowser chooseScreen={handleChooseScreen} screens={ripData?.screens} /> }

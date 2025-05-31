@@ -54,10 +54,23 @@ body{
   transition: 0.3s;
 }
 
+.ripViewer .header button{
+  background: #555;
+  padding: 5px;
+  border-radius: 10px;
+  padding: 8px 15px;
+  color:#fff;
+}
+.ripViewer h2{
+  border:1px solid #999;
+  border-left: none;
+  border-right: none;
+  padding: 10px 0;
+}
 .ripViewer .screenBrowser{
   overflow-y:auto;
   width:250px;
-  height: 800px;
+  max-height: 750px;
 }
 .ripViewer .screenBrowser .screen{
   cursor:pointer;
