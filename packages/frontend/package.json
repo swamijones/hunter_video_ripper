@@ -77,7 +77,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "server": "node ./server/server.js"
+    "server": "node ./server/server.js",
+    "postinstall": "yarn build"
   },
   "browserslist": {
     "production": [
