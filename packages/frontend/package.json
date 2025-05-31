@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@hunterlearning/video-ripper": "0.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/dom": "^10.4.0",
@@ -19,13 +20,17 @@
     "babel-plugin-named-asset-import": "^0.3.8",
     "babel-preset-react-app": "^10.0.1",
     "bfj": "^7.0.2",
+    "body-parser": "2.2.0",
     "browserslist": "^4.18.1",
     "camelcase": "^6.2.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "cors": "2.8.5",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^10.0.0",
     "dotenv-expand": "^5.1.0",
+    "express": "5.1.0",
+    "express-fileupload": "1.5.1",
     "eslint": "^8.3.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
@@ -48,6 +53,7 @@
     "react-dev-utils": "^12.0.1",
     "react-dom": "^19.1.0",
     "react-refresh": "^0.11.0",
+    "react-router": "7.6.1",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
@@ -57,6 +63,7 @@
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "typescript": "^4.9.5",
+    "uuid": "11.1.0",
     "web-vitals": "^2.1.4",
     "webpack": "^5.64.4",
     "webpack-dev-server": "^4.6.0",
@@ -64,15 +71,11 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
+    "dev:server": "yarn build && yarn server",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "test": "node scripts/test.js",
+    "server": "node ./server/server.js"
   },
   "browserslist": {
     "production": [

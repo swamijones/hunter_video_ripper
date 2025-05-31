@@ -1,13 +1,145 @@
 body{
   background-color: #282c34;
 }
-.App {
+
+.mainColumn {
   max-width: 1200px;
   margin:auto;
+  background: #e2e2e2;
+  padding:20px;
 }
+.row{
+  display:flex;
+  flex-direction: row;
+  gap:20px;
+}
+.row.reverse{
+  flex-direction: row-reverse;
+}
+.row.between{
+  justify-content: space-between;
+}
+.row.aligncenter{
+  align-items: center;
+}
+.home .videoEntry{
+  padding: 20px 0;
+  border: 1px solid #ccc;
+  border-left:none;
+  border-right:none;
+  display:flex;
+  justify-content: space-between;
+}
+
+.videoRip .progress{
+  padding:30px;
+  border: 1px solid #ccc;
+}
+.videoRip .progressRow{
+  padding: 10px 0;
+  display:flex;
+}
+.videoRip .progressRow .label{
+  width: 200px;
+}
+.videoRip .bar{
+  border: 1px solid #666;
+  background: #ccc;
+  flex-grow: 1;
+}
+.videoRip .bar .track{
+  width: 0%;
+  height: 100%;
+  background: #052;
+  transition: 0.3s;
+}
+
+.ripViewer .screenBrowser{
+  overflow-y:auto;
+  width:250px;
+  height: 800px;
+}
+.ripViewer .screenBrowser .screen{
+  cursor:pointer;
+  padding:5px 10px;
+}
+.ripViewer .screenBrowser .screen:hover{
+  background: #eee;
+}
+.ripViewer .screenBrowser .screen.green{
+  background: #aea;
+}
+.ripViewer .screenBrowser .screen.red{
+  background: #eaa;
+}
+.ripViewer .screenBrowser .screen.gray{
+  opacity: 0.25;
+}
+.ripViewer .screenBrowser .timespan{
+    color: #666;
+    font-size:12px;
+}
+
+.ripViewer .screenEdit{
+  flex-grow: 1;
+}
+.ripViewer .statusChooser{
+  display:flex;
+  gap:5px;
+}
+.ripViewer .statusChooser button{
+  padding: 5px 10px;
+  outline: none;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.ripViewer .statusChooser button.active{
+  opacity:1;
+}
+.ripViewer .statusChooser button.green{
+  background: #052;
+  color: #fff;
+}
+
+.ripViewer .statusChooser button.red{
+  background: #600;
+  color: #fff;
+}
+
+.ripViewer .screenEdit .row{
+  width:100%;
+}
+.ripViewer .screenEdit .mainImage{
+  max-width:600px;
+  cursor:pointer;
+}
+.ripViewer .screenEdit .screenText{
+  flex-grow: 1;
+}
+.ripViewer .screenEdit .notes{
+  width:100%;
+  height:200px;
+}
+.ripViewer .save{
+  background:#052;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top:30px;
+}
+
+
+
+/* 
 .App video{
   width:100%;
 }
+
+
+
+
+
 
 .screen{
   margin-top:20px;
@@ -28,4 +160,4 @@ body{
 }
 .screenContents textarea{
   width:50%;
-}
+} */

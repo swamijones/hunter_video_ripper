@@ -1,6 +1,8 @@
 # binaries
 packages/ripper/lib
+
 # working files
+datastore
 media
 packages/frontend/src/data
 packages/frontend/public/data
