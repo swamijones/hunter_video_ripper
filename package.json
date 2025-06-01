@@ -9,6 +9,9 @@
     "lerna": "^8.2.2"
   },
   "scripts": {
+    "build": "yarn build:frontend && yarn build:ripper",
+    "build:frontend": "yarn workspace @hunterlearning/video-rip-frontend build",
+    "build:ripper": "yarn workspace @hunterlearning/video-ripper build",
     "rip:video": "yarn workspace @hunterlearning/video-ripper rip:all",
     "view:results": "yarn workspace @hunterlearning/video-rip-frontend start",
     "start": "yarn workspace @hunterlearning/video-rip-frontend dev:server",

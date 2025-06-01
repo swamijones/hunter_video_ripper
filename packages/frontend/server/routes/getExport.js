@@ -21,10 +21,10 @@ const buildSpreadSheet = (slides, sourceFolder, outputFile) => {
         ws.cell(1,4).string('Extracted Text')
 
         for(var i = 0; i<slides.length; i++){
-            const {screenShot, index, notes, text} = slides[i]
+            const {screenShot, label, index, notes, text} = slides[i]
             const row = i+2
             ws.row(row).setHeight(200)
-            ws.cell(row,2).string(`Screen ${index+1}`)
+            ws.cell(row,2).string(label ?? `Screen ${index+1}`)
             ws.cell(row,3).string(notes).style(wrap)
             ws.cell(row,4).string(text).style(wrap)
 
@@ -93,8 +93,8 @@ const buildDesignExport = async (projectData, dataStore) => {
     await buildSpreadSheet(designSlides, dataStore, outputFile)
 
     for(var i = 0; i< designSlides.length; i++){
-        const { index, screenShot }= designSlides[i];
-        const fileID = `Screen_${index+1}`
+        const { index, screenShot, label }= designSlides[i];
+        const fileID = label ?? `Screen_${index+1}`
         // fs.writeFileSync(path.resolve(exportFolder, `${fileID}.txt`), [
         //     '===========DESIGN NOTES============',
         //     notes,

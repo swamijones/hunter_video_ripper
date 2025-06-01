@@ -5,6 +5,7 @@ export type VideoScreen = {
   text:string
   status?: 'green' | 'red' | 'gray'
   notes?: string
+  label?: string
 }
 
 export type RippedVideo = {

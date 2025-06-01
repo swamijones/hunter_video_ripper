@@ -13,6 +13,7 @@ const {ripVideo, ripProgress} = require('./routes/ripVideo')
 const getImage = require('./routes/getImage')
 const saveVideoData = require('./routes/saveVideoData')
 const getExport = require('./routes/getExport')
+const getVideoMedia = require('./routes/getVideoMedia')
 
 const app = express()
 const port = 4000
@@ -32,6 +33,7 @@ app.get('/api/ripProgress/:hash', ripProgress)
 app.get('/api/videoImage/:hash/:image', getImage)
 app.post('/api/saveVideoData', saveVideoData)
 app.get('/api/export/:hash/:type', getExport)
+app.get('/api/media/:hash', getVideoMedia)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

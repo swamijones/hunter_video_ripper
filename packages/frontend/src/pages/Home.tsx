@@ -49,7 +49,7 @@ export const Home:FC = () => {
     return <div className="home mainColumn">
         <h2>Projects</h2>
         {
-          data.map(vid => { console.log(vid); return <VideoEntry {...vid} onChange={refreshData}/>})           
+          data.map((vid, index) => <VideoEntry key={`video.${index}`} {...vid} onChange={refreshData}/>)           
         }
         <Link to="import-rip"><button>Import New Project</button></Link>
     </div>
