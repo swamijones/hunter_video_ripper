@@ -1,5 +1,5 @@
 export const timecode = (seconds:number) => {
-    const sigfig = (n:number) => n>10 ? n : `0${n}`
+    const sigfig = (n:number) => n>=10 ? n : `0${n}`
 
     let minutes = 0
     let hours = 0

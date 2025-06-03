@@ -40,8 +40,8 @@ const screenData:Scene[] = [{
 const capScene = (endFrame: number) => {
     const scene = screenData[screenData.length-1]
     scene.end = endFrame
-
-    const midPoint = scene.start + Math.round((scene.end - scene.start)/2)
+    
+    const midPoint = scene.start + Math.floor((scene.end - scene.start)/2)
     scene.screenShot = path.basename(shotList[midPoint])
 }
 

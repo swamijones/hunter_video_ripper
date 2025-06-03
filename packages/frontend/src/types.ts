@@ -6,6 +6,12 @@ export type VideoScreen = {
   status?: 'green' | 'red' | 'gray'
   notes?: string
   label?: string
+  productRefs?: {
+    audio?: boolean
+    video?: boolean
+    num?: number
+    notes?: string
+  }
 }
 
 export type RippedVideo = {

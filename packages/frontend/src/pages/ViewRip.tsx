@@ -98,6 +98,7 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
     const [screenNotes, setScreenNotes] = useState(screen.notes)
     const screenImgUrl = `http://localhost:4000/api/videoImage/${hash}/${screen.screenShot}`
     const videoRef = useRef<HTMLVideoElement>(null)
+    const [productData, setProductData] = useState<VideoScreen['productRefs']>(screen.productRefs ?? {})
 
     useEffect(() => {
         setPreviewVideo(false)
@@ -130,9 +131,35 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
         }) 
     }
 
+    const handleProductAudio = () => {
+        setProductData({
+            ...productData,
+            audio: !productData?.audio
+        })
+    }
+    const handleProductVideo = () => {
+        setProductData({
+            ...productData,
+            video: !productData?.video
+        })
+    }
+    const handleProductRefs:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        setProductData({
+            ...productData,
+            num: parseInt(event.target.value),
+        })
+    }
+    const handleProductNotes:React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
+        setProductData({
+            ...productData,
+            notes: event.target.value,
+        })
+    }
+
     const handleSave = () => {
         const updatedData = {
             ...screen,
+            productRefs: productData,
             text: screenText,
             notes: screenNotes
         }
@@ -172,6 +199,17 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
         </div>
         <h4>Instructions for Designer/Notes for review</h4>
         <textarea className="notes" value={screenNotes} onChange={handleNotesChange} onKeyUp={prevent}/>
+        <div className="productMentions">
+            <h4>Product Mentions</h4>
+            <div className="row">
+                <div className="col">
+                    <label><input checked={productData?.audio} onChange={handleProductAudio} type="checkbox" />Audio</label>
+                    <label><input checked={productData?.video} onChange={handleProductVideo} type="checkbox" />Video</label>
+                    <label># Refs<input onChange={handleProductRefs} type="number" value={productData?.num} /></label>
+                </div>
+                <textarea className="productNotes" onChange={handleProductNotes} value={productData?.notes} />
+            </div>
+        </div>
         <div className="row reverse">
             <button className="save" onClick={handleSave}>Save Changes</button>
         </div>
@@ -328,6 +366,7 @@ export const ViewRip:FC = () => {
 
     const exportDesign = () => exportSlides(hash, 'design')
     const exportProblem = () => exportSlides(hash, 'problem')
+    const exportTracker = () => exportSlides(hash, 'tracker')
 
     if(!ripData) {
         return <></>
@@ -339,6 +378,7 @@ export const ViewRip:FC = () => {
             <div className="row">
                 <button onClick={exportDesign}>Export Design Slides</button>
                 <button onClick={exportProblem}>Export Problem Slides</button>
+                <button onClick={exportTracker}>Export Tracker Sheet</button>
             </div>
         </div>
         <h2>Rip of {ripData?.video}</h2>
