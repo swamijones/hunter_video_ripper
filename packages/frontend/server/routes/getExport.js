@@ -136,7 +136,7 @@ const buildDesignExport = async (projectData, dataStore) => {
     if(fs.existsSync(exportFolder)){
         fs.rmSync(exportFolder, { recursive: true })
     }
-    fs.mkdirSync(exportFolder)
+    fs.mkdirSync(exportFolder, { recursive: true })
 
     const fileName = path.basename(projectData.video).replace(/\.mp4/, '.xlsx')
     const outputFile = path.resolve(exportFolder, fileName)

@@ -12,7 +12,7 @@ type CompareOptions = {
 const isSameImage = (img1Path:string, img2Path:string, options:CompareOptions = {}) => {
     const {
         output,
-        threshold = 0.05
+        threshold = 0.017
     } = options
 
     const img1 = PNG.sync.read(fs.readFileSync(img1Path));
