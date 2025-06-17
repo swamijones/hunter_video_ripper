@@ -68,7 +68,7 @@ const StatusChooser:FC<StatusChooserProps> = ({
 }) => {
     const statuses = [
         {status: 'green', label: 'Ready for Design'}, 
-        {status: 'red', label: 'Need Discussion'},
+        // {status: 'red', label: 'Need Discussion'},
         {status: 'gray', label: 'Unecessary Screen'},
     ] as {status:VideoScreen['status'], label:string}[]
 
@@ -189,16 +189,21 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
                 <StatusChooser onChange={changeStatus} status={screen.status} />
             </div>
         </div>
-        <div className="row">
             <div className="mainImage">
                 <img title="click for fullsize" onClick={viewFullImage} src={screenImgUrl} />
                 <video controls ref={videoRef} className={previewVideo ? 'visible' : 'hidden'}><source src={`http://localhost:4000/api/media/${hash}#t=${screen.start}`} type="video/mp4" /></video>
                 <button className="vidPreview" onClick={toggleVideo}>{previewVideo ? 'Hide' : 'Show'} Video</button>
             </div>
-            <textarea className="screenText" value={screenText} onChange={handleScreenTextChange} onKeyUp={prevent}/>
+        <div className="row">
+            <div className="rippedText">
+                <h4>Ripped Text</h4>
+                <textarea className="screenText" value={screenText} onChange={handleScreenTextChange} onKeyUp={prevent}/>
+            </div>
+            <div className="designerNotes">
+                <h4>Instructions for Designer/Notes for review</h4>
+                <textarea className="notes" value={screenNotes} onChange={handleNotesChange} onKeyUp={prevent}/>
+            </div>
         </div>
-        <h4>Instructions for Designer/Notes for review</h4>
-        <textarea className="notes" value={screenNotes} onChange={handleNotesChange} onKeyUp={prevent}/>
         <div className="productMentions">
             <h4>Product Mentions</h4>
             <div className="row">
@@ -322,21 +327,13 @@ export const ViewRip:FC = () => {
        }
     }
     
-    const keyboardStatus = (dir: 'next' | 'prev') => {
+    const keyboardStatus = (dir: 'left' | 'right') => {
         if(ripData?.screens){
-            switch(ripData.screens[currentScreen].status){
-                case 'green':
-                    setCurrentScreenStatus(dir === 'prev' ? undefined : 'red')
-                    break
-                case 'red':
-                    setCurrentScreenStatus(dir === 'prev' ? 'green' : 'gray')
-                    break
-                case 'gray':
-                    setCurrentScreenStatus(dir === 'prev' ? 'red' : undefined)
-                    break
-                default:
-                    setCurrentScreenStatus(dir === 'prev' ? 'green' : 'gray')
-                    break
+            const currentStatus = ripData.screens[currentScreen].status
+            if(dir === 'left'){
+                setCurrentScreenStatus(currentStatus === 'green' ? undefined : 'green')
+            }else{
+                setCurrentScreenStatus(currentStatus === 'gray' ? undefined : 'gray')
             }
         }
     }
@@ -356,16 +353,16 @@ export const ViewRip:FC = () => {
                 }
                 break;
             case 'ArrowLeft':
-                keyboardStatus('prev')
+                keyboardStatus('left')
                 break;
             case 'ArrowRight':
-                keyboardStatus('next')
+                keyboardStatus('right')
                 break;
         }
     }
 
     const exportDesign = () => exportSlides(hash, 'design')
-    const exportProblem = () => exportSlides(hash, 'problem')
+    // const exportProblem = () => exportSlides(hash, 'problem')
     const exportTracker = () => exportSlides(hash, 'tracker')
 
     if(!ripData) {
@@ -377,7 +374,7 @@ export const ViewRip:FC = () => {
             <Link to="/">&lt; Back to Projects</Link>
             <div className="row">
                 <button onClick={exportDesign}>Export Design Slides</button>
-                <button onClick={exportProblem}>Export Problem Slides</button>
+                {/* <button onClick={exportProblem}>Export Problem Slides</button> */}
                 <button onClick={exportTracker}>Export Tracker Sheet</button>
             </div>
         </div>

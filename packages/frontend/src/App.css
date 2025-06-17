@@ -10,7 +10,7 @@ body{
 }
 
 .mainColumn {
-  max-width: 1300px;
+  max-width: 1300px; 
   margin:auto;
   background: #e2e2e2;
   padding:20px;
@@ -145,7 +145,6 @@ body{
   width:100%;
 }
 .ripViewer .screenEdit .mainImage{
-  max-width:600px;
   cursor:pointer;
   position:relative;
 }
@@ -165,9 +164,12 @@ body{
   bottom:15px;
 }
 
-.ripViewer .screenEdit .screenText{
+.ripViewer .screenEdit .rippedText,
+.ripViewer .screenEdit .designerNotes{
   flex-grow: 1;
 }
+
+.ripViewer .screenEdit .screenText,
 .ripViewer .screenEdit .notes{
   width:100%;
   height:150px;
