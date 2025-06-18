@@ -66,6 +66,26 @@ body{
   transition: 0.3s;
 }
 
+.ripViewer .markerData {
+  position:absolute;
+  right: 30px;
+  top:30px;
+  background: #bbb;
+  border: 10px #666 solid;
+  padding: 10px 50px 50px;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+  z-index:100;
+}
+.ripViewer .markerData textarea{
+  width:100%;
+  height: 300px;
+  display:block;
+}
+.ripViewer .markerData{
+
+}
+
 .ripViewer .header button{
   background: #555;
   padding: 5px;
@@ -122,25 +142,26 @@ body{
   display:flex;
   gap:5px;
 }
-.ripViewer .statusChooser button{
+button{
   padding: 5px 10px;
   outline: none;
-  opacity: 0.3;
   cursor: pointer;
 }
-.ripViewer .statusChooser button.active{
+.statusChooser button{
+  opacity: 0.3;
+}
+button.active{
   opacity:1;
 }
-.ripViewer .statusChooser button.green{
+button.green{
   background: #052;
   color: #fff;
 }
 
-.ripViewer .statusChooser button.red{
+button.red{
   background: #600;
   color: #fff;
 }
-
 .ripViewer .screenEdit .row{
   width:100%;
 }

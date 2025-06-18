@@ -101,6 +101,10 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
     const [productData, setProductData] = useState<VideoScreen['productRefs']>(screen.productRefs ?? {})
 
     useEffect(() => {
+        setProductData(screen.productRefs ?? {})
+    }, [screen])
+
+    useEffect(() => {
         setPreviewVideo(false)
         videoRef.current?.pause()
     }, [screen.start])
@@ -155,7 +159,6 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
             notes: event.target.value,
         })
     }
-
     const handleSave = () => {
         const updatedData = {
             ...screen,
@@ -212,7 +215,7 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
                     <label><input checked={productData?.video} onChange={handleProductVideo} type="checkbox" />Video</label>
                     <label># Refs<input onChange={handleProductRefs} type="number" value={productData?.num} /></label>
                 </div>
-                <textarea className="productNotes" onChange={handleProductNotes} value={productData?.notes} />
+                <textarea className="productNotes" onChange={handleProductNotes} value={productData?.notes ?? ''} />
             </div>
         </div>
         <div className="row reverse">
@@ -221,6 +224,16 @@ const ScreenViewer:FC<ScreenViewerProps> = ({onDataChange, index, screen}) => {
     </div>
 }
 
+const getMarkerData = (ripVideo: RippedVideo) => {
+    const greenScreens = ripVideo.screens?.filter(screen => screen.status === 'green')
+    return greenScreens?.map(screen => [
+        timecode(screen.start), 
+        timecode(screen.end),
+        '3',
+        'Comment',
+        `Screen ${screen.label}`
+    ].join('\t')).join('\n')
+}
 
 const setScreenLabels = (screens:VideoScreen[] = []) => {
     let counter = 0
@@ -256,6 +269,7 @@ export const ViewRip:FC = () => {
     const [ripData, setRipData] = useState<RippedVideo>()
     const [currentScreen, setCurrentScreen] = useState(-1)
     const [showAllScreens, setShowAllScreens] = useState(false)
+    const [markerData, setMarkerData] = useState(false)
 
     useEffect(() => {
         if(hash){
@@ -364,17 +378,37 @@ export const ViewRip:FC = () => {
     const exportDesign = () => exportSlides(hash, 'design')
     // const exportProblem = () => exportSlides(hash, 'problem')
     const exportTracker = () => exportSlides(hash, 'tracker')
+    const showMarkers = () => {
+        setMarkerData(true)
+    }
+    const hideMarkers = () => {
+        setMarkerData(false)
+    }
 
     if(!ripData) {
         return <></>
     }
+    const copyToClipboard = () => {
+         navigator.clipboard.writeText(getMarkerData(ripData) ?? '').then(_event => alert('Copied!'))
+    }
+
     return (
     <div className="ripViewer mainColumn" tabIndex={0} onKeyUp={handleKeyPress}>
+        {markerData && <div className="markerData">
+            <h3>Markerbox Marker Data</h3>
+            Copy and paste this data into markerbox's import via text field option.  
+            <textarea readOnly value={getMarkerData(ripData)}/> 
+            <div className="row between">
+                <button className="active" onClick={copyToClipboard}>Copy to Clipboard</button>
+                <button className="active" onClick={hideMarkers}>Close Panel</button>
+            </div>
+        </div>}
         <div className="row between header">
             <Link to="/">&lt; Back to Projects</Link>
             <div className="row">
                 <button onClick={exportDesign}>Export Design Slides</button>
                 {/* <button onClick={exportProblem}>Export Problem Slides</button> */}
+                <button onClick={showMarkers}>Export Marker Data</button>
                 <button onClick={exportTracker}>Export Tracker Sheet</button>
             </div>
         </div>
